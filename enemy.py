@@ -35,7 +35,7 @@ class Enemy:
         self.rect.x = x
         self.rect.y = y
         self.rect_ground_collition = pygame.Rect(self.rect.x + self.rect.w / 4, self.rect.y + self.rect.h - GROUND_RECT_H, self.rect.w / 2, GROUND_RECT_H)
-        self.rect_head_collition = pygame.Rect(self.rect.x + self.rect.w / 4, self.rect.y, self.rect.w / 2, GROUND_RECT_H)
+        self.rect_head_collition = pygame.Rect(self.rect.x, self.rect.y, self.rect.w, GROUND_RECT_H)
 
 
     def change_x(self, delta_x):
@@ -87,7 +87,16 @@ class Enemy:
                     break
 
         return is_on_platform
+    
 
+    def dead(self, player):
+        is_dead = False
+        if self.rect_head_collition.colliderect(player.rect_ground_collition):
+            is_dead = True
+            print("muere")
+
+        return is_dead
+    
 
     def do_animation(self, delta_ms):
         self.elapsed_time_animation += delta_ms
@@ -101,7 +110,8 @@ class Enemy:
                 self.frame = 0
 
 
-    def update(self, delta_ms, list_platforms):
+    def update(self, delta_ms, list_platforms, main_player):
+        self.dead(main_player)
         self.do_movement(delta_ms, list_platforms)
         self.do_animation(delta_ms)
 

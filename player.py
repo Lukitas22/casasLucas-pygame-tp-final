@@ -36,6 +36,7 @@ class Player:
         self.rect.x = x
         self.rect.y = y
         self.rect_ground_collition = pygame.Rect(self.rect.x + self.rect.w / 4, self.rect.y + self.rect.h - GROUND_RECT_H, self.rect.w / 2, GROUND_RECT_H)
+        self.rect_head_collition = pygame.Rect(self.rect.x + self.rect.w / 4, self.rect.y, self.rect.w / 2, GROUND_RECT_H)
 
 
     def walk(self, direction):
@@ -88,11 +89,13 @@ class Player:
     def change_x(self, delta_x):
         self.rect.x += delta_x
         self.rect_ground_collition.x += delta_x
+        self.rect_head_collition.x += delta_x
 
 
     def change_y(self, delta_y):
         self.rect.y += delta_y
         self.rect_ground_collition.y += delta_y
+        self.rect_head_collition.y += delta_y
 
 
     def do_movement(self, delta_ms, list_platforms):
@@ -152,6 +155,7 @@ class Player:
         if DEBUG:
             pygame.draw.rect(screen, RED, self.rect)
             pygame.draw.rect(screen, GREEN, self.rect_ground_collition)
+            pygame.draw.rect(screen, GREEN, self.rect_head_collition)
             
         self.image = self.animation[self.frame]
         screen.blit(self.image, self.rect)

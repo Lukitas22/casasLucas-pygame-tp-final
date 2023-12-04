@@ -177,7 +177,7 @@ while True:
         decoration.draw(screen)
 
     for enemy_element in enemy_list:
-        enemy_element.update(delta_ms, list_platforms)
+        enemy_element.update(delta_ms, list_platforms, main_player)
         enemy_element.draw(screen)
 
     for platform in list_platforms:

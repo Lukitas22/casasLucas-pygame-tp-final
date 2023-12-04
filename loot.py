@@ -51,7 +51,7 @@ class Loot():
 
 
     def update(self, delta_ms, main_player):
-        self.collect(main_player)
+        self.is_collected(main_player)
         self.do_animation(delta_ms)
 
 
