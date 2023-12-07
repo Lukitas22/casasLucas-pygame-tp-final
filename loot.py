@@ -4,7 +4,7 @@ from constants import *
 
 
 
-class Loot():  
+class Loot(pygame.sprite.Sprite):  
     def __init__(self, x, y, frame_rate_ms, scale = 1) -> None:
             self.idle = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Loots\Cherries.png", 17, 1, scale = scale)
             self.collected = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Loots\Collected.png", 6, 1, scale = scale)
