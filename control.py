@@ -9,10 +9,6 @@ class Control:
         self.rect_top_border = pygame.Rect(40, 49, 1500, 10)
 
 
-    def collition(self, main_player):
-        pass
-
-
     def draw(self, screen):
         if DEBUG:
             pygame.draw.rect(screen, BLUE, self.rect_right_border)

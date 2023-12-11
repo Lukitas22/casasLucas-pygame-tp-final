@@ -9,15 +9,27 @@ from loot import Loot
 from control import Control
 
 screen = pygame.display.set_mode((WIDTH_WINDOW, HEIGHT_WINDOW))
+pygame.display.set_caption("Pixel Adventure")
 
 pygame.init()
+initial_time = 60
 clock = pygame.time.Clock()
+timer = int(pygame.time.get_ticks() + initial_time * 1000)
 
 background = pygame.image.load(PATH_IMAGE + "\Backgrounds\Primer_nivel.png")
 background = pygame.transform.scale(background, (WIDTH_WINDOW, HEIGHT_WINDOW))
 borders_limits = Control()
 
 decoration_group = pygame.sprite.Group()
+
+loot_group = pygame.sprite.Group()
+
+loot_1 = Loot(x = 300, y = 700, frame_rate_ms = 45, scale = 1.50)
+loot_2 = Loot(x = 200, y = 700, frame_rate_ms = 45, scale = 1.50)
+
+loot_group.add(loot_1)
+loot_group.add(loot_2)
+
 
 
 main_player = Player(x = 100, y = 700, speed = 10, gravity = 20, jump_power = 20, frame_rate_ms = 55, move_frame_rate_ms = 40, jump_height = 150, scale = 2, interval_time_jump = 300)
@@ -33,9 +45,6 @@ list_platforms.append(Platform(x = 700, y = 700, width = 50, height = 50, type =
 list_platforms.append(Platform(x = 750, y = 700, width = 50, height = 50, type = 2))
 
 
-
-loot = Loot(x = 100, y = 700, frame_rate_ms = 45, scale = 1.50)
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -44,8 +53,23 @@ while True:
     
     keys = pygame.key.get_pressed() 
 
+    time_remaining = max(0, (timer - pygame.time.get_ticks()) // 1000)
+
+    font = pygame.font.Font(None, 36)
+    text = font.render("Tiempo Restante: {0}".format(time_remaining), True, WHITE)
+
+    if time_remaining == 0:
+        print("You lose")
+        break
+    
+
     delta_ms = clock.tick(FPS) 
     screen.blit(background, background.get_rect())
+    screen.blit(text, (80, 10))
+   
+    for loot in loot_group:
+        loot.update(delta_ms, main_player)
+        loot.draw(screen)
     
     for decoration in decoration_group:
         decoration.draw(screen)
@@ -58,10 +82,8 @@ while True:
         platform.draw(screen)
 
     borders_limits.draw(screen)
-    loot.update(delta_ms, main_player)
-    loot.draw(screen)
     main_player.events(delta_ms, keys)
-    main_player.update(delta_ms, list_platforms)
+    main_player.update(delta_ms, list_platforms, borders_limits, keys)
     main_player.draw(screen)
 
     pygame.display.flip()

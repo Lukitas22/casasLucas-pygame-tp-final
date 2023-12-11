@@ -10,11 +10,12 @@ class Player:
         self.jump_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Jump (32x32).png", 1, 1, flip = True, scale = scale)
         self.idle_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Idle.png", 11, 1, scale = scale)
         self.idle_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Idle.png", 11, 1, flip = True, scale = scale)
-        #self.lives = 0
-        #self.score = 0
+        self.lives = 0
+        self.score = 0
         self.direction = DIRECTION_R 
         self.move_x = 0
         self.move_y = 0
+        self.speed_to_change = speed
         self.speed = speed
         self.gravity = gravity
         self.jump_power = jump_power
@@ -46,10 +47,10 @@ class Player:
                 self.direction = direction
                 
             if direction == DIRECTION_R:
-                self.move_x = self.speed
+                self.move_x = self.speed_to_change
                 self.animation = self.walk_r
             else:
-                self.move_x = -self.speed
+                self.move_x = -self.speed_to_change
                 self.animation = self.walk_l
 
 
@@ -84,6 +85,19 @@ class Player:
             self.move_x = 0
             self.move_y = 0
             self.frame = 0  
+
+
+    def collition_borders(self, borders, keys):
+        if self.rect.colliderect(borders.rect_right_border):
+            self.speed_to_change = 0
+            if keys[pygame.K_LEFT]:
+                self.speed_to_change = self.speed
+
+        if self.rect.colliderect(borders.rect_left_border):        #ARREGLAR
+            print("toca")
+            self.speed_to_change = 0
+            if keys[pygame.K_RIGHT]:
+                self.speed_to_change = self.speed
 
 
     def change_x(self, delta_x):
@@ -146,7 +160,8 @@ class Player:
                 self.frame = 0
 
 
-    def update(self, delta_ms, list_platforms):
+    def update(self, delta_ms, list_platforms, borders, keys):
+        self.collition_borders(borders, keys)
         self.do_movement(delta_ms, list_platforms)
         self.do_animation(delta_ms)
 

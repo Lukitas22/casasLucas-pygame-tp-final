@@ -6,8 +6,8 @@ from constants import *
 
 class Loot(pygame.sprite.Sprite):  
     def __init__(self, x, y, frame_rate_ms, scale = 1) -> None:
+            super().__init__()
             self.idle = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Loots\Cherries.png", 17, 1, scale = scale)
-            self.collected = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Loots\Collected.png", 6, 1, scale = scale)
             self.frame = 0
             self.animation = self.idle
             self.image = self.animation[self.frame]
@@ -21,11 +21,9 @@ class Loot(pygame.sprite.Sprite):
 
     def collect(self, main_player):
         if self.is_collected(main_player):
+            
             print("entre")
-            self.animation = self.collected
-        
-        self.frame = 0    
-        #self.image = self.animation[self.frame]
+            self.kill()
 
 
     def is_collected(self, main_player):
@@ -34,6 +32,7 @@ class Loot(pygame.sprite.Sprite):
         if self.rect_collition.colliderect(main_player.rect):
             print("toco")
             is_collected = True
+    
             
         return is_collected
 
@@ -51,8 +50,10 @@ class Loot(pygame.sprite.Sprite):
 
 
     def update(self, delta_ms, main_player):
-        self.is_collected(main_player)
+        self.collect(main_player)
         self.do_animation(delta_ms)
+      
+        
 
 
     def draw(self, screen):
