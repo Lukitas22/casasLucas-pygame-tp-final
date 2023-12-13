@@ -3,25 +3,24 @@ from configs import Configs
 from constants import *
 
 
-
 class Loot(pygame.sprite.Sprite):  
     def __init__(self, x, y, frame_rate_ms, scale = 1) -> None:
-            super().__init__()
-            self.idle = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Loots\Cherries.png", 17, 1, scale = scale)
-            self.frame = 0
-            self.animation = self.idle
-            self.image = self.animation[self.frame]
-            self.rect = self.image.get_rect()
-            self.rect.x = x
-            self.rect.y = y
-            self.rect_collition = pygame.Rect(self.rect.x, self.rect.y, self.rect.w, self.rect.h)
-            self.frame_rate_ms = frame_rate_ms
-            self.elapsed_time_animation = 0
+        super().__init__()
+        self.idle = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Loots\Cherries.png", 17, 1, scale = scale)
+        self.frame = 0
+        self.animation = self.idle
+        self.image = self.animation[self.frame]
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.rect_collition = pygame.Rect(self.rect.x, self.rect.y, self.rect.w, self.rect.h)
+        self.frame_rate_ms = frame_rate_ms
+        self.elapsed_time_animation = 0
 
 
     def collect(self, main_player):
         if self.is_collected(main_player):
-            
+            main_player.score += 10
             print("entre")
             self.kill()
 
@@ -54,8 +53,6 @@ class Loot(pygame.sprite.Sprite):
         self.do_animation(delta_ms)
       
         
-
-
     def draw(self, screen):
         if DEBUG:
             pygame.draw.rect(screen, RED, self.rect)

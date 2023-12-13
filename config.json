@@ -1,0 +1,32 @@
+{
+    "stages": {
+        "stage_1": {
+            "scenario": {
+                "stage_name": "NIVEL 1",
+                "background": "Images/Backgrounds/Primer_nivel.png"
+            },
+            "enemies": {
+                "enemies_amount": 2,
+                "sprites": {
+                    "walk_r": "Images/Enemies/Chicken/Run (32x34).png",
+                    "idle": "Images/Enemies/Chicken/Idle (32x34).png",
+                    "hit": "Images/Enemies/Chicken/Hit (32x34).png"
+                }
+            }
+        },
+        "stage_2": {
+            "scenario": {
+                "stage_name": "NIVEL 2",
+                "background": "Images/Backgrounds/Segundo_nivel.png"
+            }
+        },
+        "stage_3": {
+            "scenario": {
+                "stage_name": "NIVEL 3",
+                "background": "Images/Backgrounds/Tercer_nivel.png"
+            }
+        }
+    }
+    
+
+}

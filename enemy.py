@@ -2,14 +2,13 @@ import pygame
 from constants import *
 from configs import *
 
-class Enemy:
+class Enemy(pygame.sprite.Sprite):
     def __init__(self, x, y, speed, gravity, jump_power, frame_rate_ms, move_frame_rate_ms, jump_height, scale = 1, interval_time_jump = 100) -> None:
+        super().__init__()
         self.walk_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Run (32x34).png", 14, 1, scale = scale)
         self.walk_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Run (32x34).png", 14, 1, flip = True, scale = scale)
         self.idle_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Idle (32x34).png", 13, 1, scale = scale)
         self.idle_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Idle (32x34).png", 13, 1, flip = True, scale = scale)
-        self.hit_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Hit (32x34).png", 5, 1, scale = scale)
-        self.hit_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Hit (32x34).png", 5, 1, flip = True, scale = scale)
     
         self.contador = 0
         self.move_x = 0
@@ -89,15 +88,22 @@ class Enemy:
         return is_on_platform
     
 
-    def dead(self, player):
+    def dead(self, main_player):
+        if self.is_dead(main_player):
+            main_player.score += 100
+            print("entre")
+            self.kill()
+
+
+    def is_dead(self, main_player):
         is_dead = False
-        if self.rect_head_collition.colliderect(player.rect_ground_collition):
+        if self.rect_head_collition.colliderect(main_player.rect_ground_collition):
             is_dead = True
             print("muere")
 
         return is_dead
     
-
+    
     def do_animation(self, delta_ms):
         self.elapsed_time_animation += delta_ms
 

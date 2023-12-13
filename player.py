@@ -93,11 +93,13 @@ class Player:
             if keys[pygame.K_LEFT]:
                 self.speed_to_change = self.speed
 
-        if self.rect.colliderect(borders.rect_left_border):        #ARREGLAR
-            print("toca")
+        if self.rect.colliderect(borders.rect_left_border): 
             self.speed_to_change = 0
             if keys[pygame.K_RIGHT]:
                 self.speed_to_change = self.speed
+        
+        if self.rect.colliderect(borders.rect_top_border):
+            self.jump(False)
 
 
     def change_x(self, delta_x):
