@@ -4,7 +4,7 @@ from configs import *
 from bullet import Bullet
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x, y, speed, gravity, jump_power, frame_rate_ms, move_frame_rate_ms, jump_height, scale = 1, interval_time_jump = 100) -> None:
+    def __init__(self, x, y, speed, lives, gravity, jump_power, frame_rate_ms, move_frame_rate_ms, jump_height, scale = 1, interval_time_jump = 100) -> None:
         super().__init__()
         self.walk_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Run.png", 12, 1, scale = scale)
         self.walk_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Run.png", 12, 1, flip = True, scale = scale)
@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.bullet_cooldown = 600
         self.bullet_time = 0
         self.ready = True
-        self.lives = 150
+        self.lives = lives
         self.score = 0
         self.direction = DIRECTION_R 
         self.move_x = 0

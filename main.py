@@ -44,7 +44,7 @@ loot_group.add(loot_4)
 loot_group.add(loot_5)
 
 
-main_player = Player(x = 100, y = 700, speed = 10, gravity = 20, jump_power = 20, frame_rate_ms = 55, move_frame_rate_ms = 40, jump_height = 150, scale = 2, interval_time_jump = 300)
+main_player = Player(x = 100, y = 700, speed = 10, lives = 150, gravity = 20, jump_power = 20, frame_rate_ms = 55, move_frame_rate_ms = 40, jump_height = 150, scale = 2, interval_time_jump = 300)
 
 
 enemy_1 = Enemy(x=1300,y=100,speed=6,gravity=14,jump_power=30,frame_rate_ms=150,move_frame_rate_ms=50,jump_height=140,scale= 2,interval_time_jump=300)

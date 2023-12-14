@@ -3,27 +3,228 @@
         "stage_1": {
             "scenario": {
                 "stage_name": "NIVEL 1",
-                "background": "Images/Backgrounds/Primer_nivel.png"
+                "background": "Images/Backgrounds/Primer_nivel.png",
+                "initial_time": 60,
+                "player_count": 1,
+                "enemies_count": 2,
+                "loot_count": 5,
+                "trap_count": 4,
+                "platforms_count": 20
+            },
+            "player": {
+                "sprites": {
+                    "idle": "Images/Main_Character/FrogNinja/Idle.png",
+                    "walk": "Images/Main_Character/FrogNinja/Run.png",
+                    "jump": "Images/Main_Character/FrogNinja/Jump (32x32).png"
+                },
+                "x": 100,
+                "y": 700,
+                "speed": 10,
+                "lives": 150,
+                "gravity": 20,
+                "jump_power": 20,
+                "frame_rate_ms": 55,
+                "move_frame_rate_ms": 40,
+                "jump_height": 150,
+                "scale": 2,
+                "interval_time_jump": 300
             },
             "enemies": {
-                "enemies_amount": 2,
                 "sprites": {
-                    "walk_r": "Images/Enemies/Chicken/Run (32x34).png",
+                    "walk": "Images/Enemies/Chicken/Run (32x34).png",
                     "idle": "Images/Enemies/Chicken/Idle (32x34).png",
                     "hit": "Images/Enemies/Chicken/Hit (32x34).png"
-                }
+                },
+                "Enemy_pos": [
+                    {"x": 1300, "y": 100}, 
+                    {"x": 750, "y": 400}
+                ],
+                "speed": 6,
+                "gravity": 14,
+                "jump_power": 30,
+                "frame_rate_ms": 150,
+                "move_frame_rate_ms": 50,
+                "jump_height": 140,
+                "scale": 2,
+                "interval_time_jump": 300
+            },
+            "loots": {
+                "sprite" : "Images/Loots/Cherries.png",
+                "loot_pos": [
+                    {"x": 225, "y": 650}, 
+                    {"x": 375, "y": 550}, 
+                    {"x": 600, "y": 400}, 
+                    {"x": 875, "y": 300}, 
+                    {"x": 1150, "y": 100}
+                ],
+                "frame_rate_ms": 45,
+                "scale": 1.5
+            },
+            "traps": {
+                "sprite": "Images/Traps/Idle.png",
+                "traps_pos": [
+                    {"x": 510, "y": 475}, 
+                    {"x": 710, "y": 475}, 
+                    {"x": 1060, "y": 175}, 
+                    {"x": 1260, "y": 175}
+                ]
+            },
+            "platforms": {
+                "platforms_pos":[
+                    {"x": 200, "y": 700},
+                    {"x": 250, "y": 700},
+                    {"x": 350, "y": 600},
+                    {"x": 400, "y": 600},
+                    {"x": 450, "y": 500},
+                    {"x": 500, "y": 500},
+                    {"x": 550, "y": 500},
+                    {"x": 600, "y": 500},
+                    {"x": 650, "y": 500},
+                    {"x": 700, "y": 500},
+                    {"x": 750, "y": 500},
+                    {"x": 850, "y": 350},
+                    {"x": 900, "y": 350},
+                    {"x": 1000, "y": 200},
+                    {"x": 1050, "y": 200},
+                    {"x": 1100, "y": 200},
+                    {"x": 1150, "y": 200},
+                    {"x": 1200, "y": 200},
+                    {"x": 1250, "y": 200},
+                    {"x": 1300, "y": 200}
+                ],
+                "width": 50,
+                "height": 50,
+                "type": 2
             }
         },
         "stage_2": {
             "scenario": {
                 "stage_name": "NIVEL 2",
-                "background": "Images/Backgrounds/Segundo_nivel.png"
+                "background": "Images/Backgrounds/Segundo_nivel.png",
+                "initial_time": 60
+            },
+            "player": {
+                "sprites": {
+                    "idle": "Images/Main_Character/FrogNinja/Idle.png",
+                    "walk": "Images/Main_Character/FrogNinja/Run.png",
+                    "jump": "Images/Main_Character/FrogNinja/Jump (32x32).png"
+                },
+                "x": 100,
+                "y": 700,
+                "speed": 10,
+                "lives": 150,
+                "gravity": 20,
+                "jump_power": 20,
+                "frame_rate_ms": 55,
+                "move_frame_rate_ms": 40,
+                "jump_height": 150,
+                "scale": 2,
+                "interval_time_jump": 300
+            },
+            "enemies": {
+                "sprites": {
+                    "walk": "Images/Enemies/Chicken/Run (32x34).png",
+                    "idle": "Images/Enemies/Chicken/Idle (32x34).png",
+                    "hit": "Images/Enemies/Chicken/Hit (32x34).png"
+                },
+                "Enemy_pos": [
+                    {"x": 1300, "y": 100}, 
+                    {"x": 750, "y": 400}
+                ],
+                "speed": 6,
+                "gravity": 14,
+                "jump_power": 30,
+                "frame_rate_ms": 150,
+                "move_frame_rate_ms": 50,
+                "jump_height": 140,
+                "scale": 2,
+                "interval_time_jump": 300
+            },
+            "loots": {
+                "sprite" : "Images/Loots/Cherries.png",
+                "loot_pos": [
+                    {"x": 225, "y": 650}, 
+                    {"x": 375, "y": 550}, 
+                    {"x": 600, "y": 400}, 
+                    {"x": 875, "y": 300}, 
+                    {"x": 1150, "y": 100}
+                ],
+                "frame_rate_ms": 45,
+                "scale": 1.5
+            },
+            "traps": {
+                "sprite": "Images/Traps/Idle.png",
+                "traps_pos": [
+                    {"x": 510, "y": 475}, 
+                    {"x": 710, "y": 475}, 
+                    {"x": 1060, "y": 175}, 
+                    {"x": 1260, "y": 175}
+                ]
             }
         },
         "stage_3": {
             "scenario": {
                 "stage_name": "NIVEL 3",
-                "background": "Images/Backgrounds/Tercer_nivel.png"
+                "background": "Images/Backgrounds/Tercer_nivel.png",
+                "initial_time": 60
+            },
+            "player": {
+                "sprites": {
+                    "idle": "Images/Main_Character/FrogNinja/Idle.png",
+                    "walk": "Images/Main_Character/FrogNinja/Run.png",
+                    "jump": "Images/Main_Character/FrogNinja/Jump (32x32).png"
+                },
+                "x": 100,
+                "y": 700,
+                "speed": 10,
+                "lives": 150,
+                "gravity": 20,
+                "jump_power": 20,
+                "frame_rate_ms": 55,
+                "move_frame_rate_ms": 40,
+                "jump_height": 150,
+                "scale": 2,
+                "interval_time_jump": 300
+            },
+            "enemies": {
+                "sprites": {
+                    "walk": "Images/Enemies/Chicken/Run (32x34).png",
+                    "idle": "Images/Enemies/Chicken/Idle (32x34).png",
+                    "hit": "Images/Enemies/Chicken/Hit (32x34).png"
+                },
+                "Enemy_pos": [
+                    {"x": 1300, "y": 100}, 
+                    {"x": 750, "y": 400}
+                ],
+                "speed": 6,
+                "gravity": 14,
+                "jump_power": 30,
+                "frame_rate_ms": 150,
+                "move_frame_rate_ms": 50,
+                "jump_height": 140,
+                "scale": 2,
+                "interval_time_jump": 300
+            },
+            "loots": {
+                "sprite" : "Images/Loots/Cherries.png",
+                "loot_pos": [
+                    {"x": 225, "y": 650}, 
+                    {"x": 375, "y": 550}, 
+                    {"x": 600, "y": 400}, 
+                    {"x": 875, "y": 300}, 
+                    {"x": 1150, "y": 100}
+                ],
+                "frame_rate_ms": 45,
+                "scale": 1.5
+            },
+            "traps": {
+                "sprite": "Images/Traps/Idle.png",
+                "traps_pos": [
+                    {"x": 510, "y": 475}, 
+                    {"x": 710, "y": 475}, 
+                    {"x": 1060, "y": 175}, 
+                    {"x": 1260, "y": 175}
+                ]
             }
         }
     }

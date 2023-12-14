@@ -10,7 +10,7 @@ DIRECTION_R = 1
 GROUND_RECT_H = 8
 GROUND_LEVEL = 750
 
-DEBUG = False
+DEBUG = True
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
