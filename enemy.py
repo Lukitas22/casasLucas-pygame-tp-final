@@ -35,18 +35,24 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.y = y
         self.rect_ground_collition = pygame.Rect(self.rect.x + self.rect.w / 4, self.rect.y + self.rect.h - GROUND_RECT_H, self.rect.w / 2, GROUND_RECT_H)
         self.rect_head_collition = pygame.Rect(self.rect.x, self.rect.y, self.rect.w, GROUND_RECT_H)
+        self.rect_left_collition = pygame.Rect(self.rect.x, self.rect.y + self.rect.w / 4, self.rect.w / 6, self.rect.h / 2)
+        self.rect_right_collition = pygame.Rect(self.rect.x + self.rect.w - 10, self.rect.y + self.rect.w / 4, self.rect.w / 6, self.rect.h / 2)
 
 
     def change_x(self, delta_x):
         self.rect.x += delta_x
         self.rect_ground_collition.x += delta_x
         self.rect_head_collition.x += delta_x
+        self.rect_left_collition.x += delta_x
+        self.rect_right_collition.x += delta_x
 
 
     def change_y(self, delta_y):
         self.rect.y += delta_y
         self.rect_ground_collition.y += delta_y
         self.rect_head_collition.y += delta_y
+        self.rect_left_collition.y += delta_y
+        self.rect_right_collition.y += delta_y
 
 
     def do_movement(self, delta_ms, list_platforms):
@@ -127,6 +133,8 @@ class Enemy(pygame.sprite.Sprite):
             pygame.draw.rect(screen, RED, self.rect)
             pygame.draw.rect(screen, GREEN, self.rect_ground_collition)
             pygame.draw.rect(screen, GREEN, self.rect_head_collition)
+            pygame.draw.rect(screen, BLUE, self.rect_left_collition)
+            pygame.draw.rect(screen, BLUE, self.rect_right_collition)
             
         self.image = self.animation[self.frame]
         screen.blit(self.image, self.rect)

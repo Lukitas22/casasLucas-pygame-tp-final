@@ -1,16 +1,22 @@
 import pygame
 from constants import *
 from configs import *
+from bullet import Bullet
 
-class Player:
+class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, speed, gravity, jump_power, frame_rate_ms, move_frame_rate_ms, jump_height, scale = 1, interval_time_jump = 100) -> None:
+        super().__init__()
         self.walk_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Run.png", 12, 1, scale = scale)
         self.walk_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Run.png", 12, 1, flip = True, scale = scale)
         self.jump_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Jump (32x32).png", 1, 1, scale = scale)
         self.jump_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Jump (32x32).png", 1, 1, flip = True, scale = scale)
         self.idle_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Idle.png", 11, 1, scale = scale)
         self.idle_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Idle.png", 11, 1, flip = True, scale = scale)
-        self.lives = 0
+        self.bullet_group = pygame.sprite.Group()
+        self.bullet_cooldown = 600
+        self.bullet_time = 0
+        self.ready = True
+        self.lives = 150
         self.score = 0
         self.direction = DIRECTION_R 
         self.move_x = 0
@@ -85,6 +91,24 @@ class Player:
             self.move_x = 0
             self.move_y = 0
             self.frame = 0  
+
+
+    def dead(self, enemy):
+        if self.rect.colliderect(enemy.rect_left_collition) or self.rect.colliderect(enemy.rect_right_collition):
+            self.lives -= 1
+            if self.lives == 0:
+                print("Mori")
+
+
+    def shoot(self):
+        self.bullet_group.add(Bullet(self.rect.center, -8, self.direction))
+
+    
+    def recharge(self):
+        if not self.ready:
+            curent_time = pygame.time.get_ticks()
+            if curent_time - self.bullet_time >= self.bullet_cooldown:
+                self.ready = True
 
 
     def collition_borders(self, borders, keys):
@@ -162,11 +186,14 @@ class Player:
                 self.frame = 0
 
 
-    def update(self, delta_ms, list_platforms, borders, keys):
+    def update(self, delta_ms, list_platforms, borders, keys, enemy_group):
+        self.dead(enemy_group)
+        self.recharge()
+        self.bullet_group.update(enemy_group, borders)
         self.collition_borders(borders, keys)
         self.do_movement(delta_ms, list_platforms)
         self.do_animation(delta_ms)
-
+        
 
     def draw(self, screen):
         if DEBUG:
@@ -197,4 +224,10 @@ class Player:
             if (self.elapsed_time_jump - self.time_last_jump) > self.interval_time_jump:
                 self.jump(True)
                 self.time_last_jump = self.elapsed_time_jump 
+        
+        if keys[pygame.K_f] and self.ready:
+            self.shoot()
+            print("entre")
+            self.ready = False
+            self.bullet_time = pygame.time.get_ticks()
         

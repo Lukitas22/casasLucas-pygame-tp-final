@@ -7,6 +7,7 @@ from enemy import Enemy
 from decoration import Decoration
 from loot import Loot
 from control import Control
+from traps import Trap
 
 
 screen = pygame.display.set_mode((WIDTH_WINDOW, HEIGHT_WINDOW))
@@ -21,6 +22,8 @@ timer = int(pygame.time.get_ticks() + initial_time * 1000)
 background = pygame.image.load(PATH_IMAGE + "\Backgrounds\Primer_nivel.png")
 background = pygame.transform.scale(background, (WIDTH_WINDOW, HEIGHT_WINDOW))
 borders_limits = Control()
+
+traps_list = []
 
 decoration_group = pygame.sprite.Group()
 
@@ -78,7 +81,7 @@ list_platforms.append(Platform(x = 1200, y = 200, width = 50, height = 50, type 
 list_platforms.append(Platform(x = 1250, y = 200, width = 50, height = 50, type = 2))
 list_platforms.append(Platform(x = 1300, y = 200, width = 50, height = 50, type = 2))
 
-
+traps_list.append(Trap(x = 510, y = 475))
 
 
 
@@ -95,6 +98,7 @@ while True:
     font = pygame.font.SysFont("Arial", 26)
     text_timer = font.render("Tiempo Restante: {0}".format(time_remaining), True, WHITE)
     text_points = font.render("Puntos: {0}".format(main_player.score), True, WHITE)
+    text_lives = font.render("Vidas: {0}".format(main_player.lives), True, WHITE)
 
     if time_remaining == 0:
         print("You lose")
@@ -105,6 +109,7 @@ while True:
     screen.blit(background, background.get_rect())
     screen.blit(text_timer, (80, 10))
     screen.blit(text_points, (400, 10))
+    screen.blit(text_lives, (600, 10))
    
     for loot in loot_group:
         loot.update(delta_ms, main_player)
@@ -120,9 +125,13 @@ while True:
     for platform in list_platforms:
         platform.draw(screen)
 
+    for trap in traps_list:
+        trap.draw(screen)
+
     borders_limits.draw(screen)
     main_player.events(delta_ms, keys)
-    main_player.update(delta_ms, list_platforms, borders_limits, keys)
+    main_player.update(delta_ms, list_platforms, borders_limits, keys, enemy_element)
+    main_player.bullet_group.draw(screen)
     main_player.draw(screen)
 
     pygame.display.flip()
