@@ -3,11 +3,13 @@ from constants import *
 from configs import *
 
 
-class Platform:
-    def __init__(self, x, y, width, height, type = 0) -> None:
-        self.image_list = Configs.getSurfaceFromSeparateFiles(PATH_IMAGE + "\Platform\{0}.png", 1, 25, w = width, h = height)
+class Platform(pygame.sprite.Sprite):
+    def __init__(self, x, y, platforms_config) -> None:
+        super().__init__()
+        self.platforms_config = platforms_config
+        self.image_list = Configs.getSurfaceFromSeparateFiles(PATH_IMAGE + "\Platform\{0}.png", 1, 25, w = self.platforms_config.get("width"), h = self.platforms_config.get("height"))
 
-        self.image = self.image_list[type]
+        self.image = self.image_list[self.platforms_config.get("type")]
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y

@@ -3,30 +3,31 @@ from constants import *
 from configs import *
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, x, y, speed, gravity, jump_power, frame_rate_ms, move_frame_rate_ms, jump_height, scale = 1, interval_time_jump = 100) -> None:
+    def __init__(self, x, y, enemy_config) -> None:
         super().__init__()
-        self.walk_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Run (32x34).png", 14, 1, scale = scale)
-        self.walk_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Run (32x34).png", 14, 1, flip = True, scale = scale)
-        self.idle_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Idle (32x34).png", 13, 1, scale = scale)
-        self.idle_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Enemies\Chicken\Idle (32x34).png", 13, 1, flip = True, scale = scale)
+        self.enemy_config = enemy_config
+        self.walk_l = Configs.getSurfaceFromSpriteSheet(self.enemy_config.get("sprites").get("walk"), 14, 1, scale = self.enemy_config.get("scale"))
+        self.walk_r = Configs.getSurfaceFromSpriteSheet(self.enemy_config.get("sprites").get("walk"), 14, 1, flip = True, scale = self.enemy_config.get("scale"))
+        self.idle_l = Configs.getSurfaceFromSpriteSheet(self.enemy_config.get("sprites").get("idle"), 13, 1, scale = self.enemy_config.get("scale"))
+        self.idle_r = Configs.getSurfaceFromSpriteSheet(self.enemy_config.get("sprites").get("idle"), 13, 1, flip = True, scale = self.enemy_config.get("scale"))
     
         self.contador = 0
         self.move_x = 0
         self.move_y = 0
-        self.speed = speed
-        self.gravity = gravity
-        self.jump_power = jump_power
+        self.speed = self.enemy_config.get("speed")
+        self.gravity = self.enemy_config.get("gravity")
+        self.jump_power = self.enemy_config.get("jump_power")
         self.is_jump = False
         self.y_start_jump = 0
-        self.jump_height = jump_height
+        self.jump_height = self.enemy_config.get("jump_height")
         self.elapsed_time_jump = 0
         self.time_last_jump = 0
-        self.interval_time_jump = interval_time_jump
+        self.interval_time_jump = self.enemy_config.get("interval_time_jump")
         self.is_fall = False
         self.elapsed_time_move = 0
         self.elapsed_time_animation = 0
-        self.move_frame_rate_ms = move_frame_rate_ms
-        self.frame_rate_ms = frame_rate_ms
+        self.move_frame_rate_ms = self.enemy_config.get("move_frame_rate_ms")
+        self.frame_rate_ms = self.enemy_config.get("frame_rate_ms")
         self.frame = 0
         self.animation = self.idle_r
         self.image = self.animation[self.frame]

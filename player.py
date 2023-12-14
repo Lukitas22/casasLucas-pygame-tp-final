@@ -4,44 +4,45 @@ from configs import *
 from bullet import Bullet
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x, y, speed, lives, gravity, jump_power, frame_rate_ms, move_frame_rate_ms, jump_height, scale = 1, interval_time_jump = 100) -> None:
+    def __init__(self, player_config) -> None:
         super().__init__()
-        self.walk_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Run.png", 12, 1, scale = scale)
-        self.walk_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Run.png", 12, 1, flip = True, scale = scale)
-        self.jump_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Jump (32x32).png", 1, 1, scale = scale)
-        self.jump_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Jump (32x32).png", 1, 1, flip = True, scale = scale)
-        self.idle_r = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Idle.png", 11, 1, scale = scale)
-        self.idle_l = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Main_Character\FrogNinja\Idle.png", 11, 1, flip = True, scale = scale)
+        self.player_config = player_config
+        self.walk_r = Configs.getSurfaceFromSpriteSheet(self.player_config.get("sprites").get("walk"), 12, 1, scale = self.player_config.get("scale"))
+        self.walk_l = Configs.getSurfaceFromSpriteSheet(self.player_config.get("sprites").get("walk"), 12, 1, flip = True, scale = self.player_config.get("scale"))
+        self.jump_r = Configs.getSurfaceFromSpriteSheet(self.player_config.get("sprites").get("jump"), 1, 1, scale = self.player_config.get("scale"))
+        self.jump_l = Configs.getSurfaceFromSpriteSheet(self.player_config.get("sprites").get("jump"), 1, 1, flip = True, scale = self.player_config.get("scale"))
+        self.idle_r = Configs.getSurfaceFromSpriteSheet(self.player_config.get("sprites").get("idle"), 11, 1, scale = self.player_config.get("scale"))
+        self.idle_l = Configs.getSurfaceFromSpriteSheet(self.player_config.get("sprites").get("idle"), 11, 1, flip = True, scale = self.player_config.get("scale"))
         self.bullet_group = pygame.sprite.Group()
         self.bullet_cooldown = 600
         self.bullet_time = 0
         self.ready = True
-        self.lives = lives
+        self.lives = self.player_config.get("lives")
         self.score = 0
         self.direction = DIRECTION_R 
         self.move_x = 0
         self.move_y = 0
-        self.speed_to_change = speed
-        self.speed = speed
-        self.gravity = gravity
-        self.jump_power = jump_power
+        self.speed_to_change = self.player_config.get("speed")
+        self.speed = self.player_config.get("speed")
+        self.gravity = self.player_config.get("gravity")
+        self.jump_power = self.player_config.get("jump_power")
         self.is_jump = False
         self.y_start_jump = 0
-        self.jump_height = jump_height
+        self.jump_height = self.player_config.get("jump_height")
         self.elapsed_time_jump = 0
         self.time_last_jump = 0
-        self.interval_time_jump = interval_time_jump
+        self.interval_time_jump = self.player_config.get("interval_time_jump")
         self.is_fall = False
         self.elapsed_time_move = 0
         self.elapsed_time_animation = 0
-        self.move_frame_rate_ms = move_frame_rate_ms
-        self.frame_rate_ms = frame_rate_ms
+        self.move_frame_rate_ms = self.player_config.get("move_frame_rate_ms")
+        self.frame_rate_ms = self.player_config.get("frame_rate_ms")
         self.frame = 0
         self.animation = self.idle_r
         self.image = self.animation[self.frame]
         self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = self.player_config.get("x")
+        self.rect.y = self.player_config.get("y")
         self.rect_ground_collition = pygame.Rect(self.rect.x + self.rect.w / 4, self.rect.y + self.rect.h - GROUND_RECT_H, self.rect.w / 2, GROUND_RECT_H)
         self.rect_head_collition = pygame.Rect(self.rect.x + self.rect.w / 4, self.rect.y, self.rect.w / 2, GROUND_RECT_H)
 

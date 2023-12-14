@@ -4,9 +4,10 @@ from constants import *
 
 
 class Loot(pygame.sprite.Sprite):  
-    def __init__(self, x, y, frame_rate_ms, scale = 1) -> None:
+    def __init__(self, x, y, loot_config) -> None:
         super().__init__()
-        self.idle = Configs.getSurfaceFromSpriteSheet(PATH_IMAGE + "\Loots\Cherries.png", 17, 1, scale = scale)
+        self.loot_config = loot_config
+        self.idle = Configs.getSurfaceFromSpriteSheet(self.loot_config.get("sprite"), 17, 1, scale = self.loot_config.get("scale"))
         self.frame = 0
         self.animation = self.idle
         self.image = self.animation[self.frame]
@@ -14,7 +15,7 @@ class Loot(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.rect_collition = pygame.Rect(self.rect.x, self.rect.y, self.rect.w, self.rect.h)
-        self.frame_rate_ms = frame_rate_ms
+        self.frame_rate_ms = self.loot_config.get("frame_rate_ms")
         self.elapsed_time_animation = 0
 
 

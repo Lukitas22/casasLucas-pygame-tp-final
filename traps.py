@@ -4,9 +4,10 @@ from constants import *
 
 
 class Trap(pygame.sprite.Sprite):
-    def __init__(self, x, y) -> None:
+    def __init__(self, x, y, trap_config) -> None:
         super().__init__()
-        self.image = pygame.image.load(PATH_IMAGE +  "\Traps\Idle.png")
+        self.trap_config = trap_config
+        self.image = pygame.image.load(self.trap_config.get("sprite"))
         self.image = pygame.transform.scale(self.image, (30,30))
         self.rect = self.image.get_rect()
         self.rect.x = x

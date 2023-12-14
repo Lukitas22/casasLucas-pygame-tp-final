@@ -5,7 +5,6 @@
                 "stage_name": "NIVEL 1",
                 "background": "Images/Backgrounds/Primer_nivel.png",
                 "initial_time": 60,
-                "player_count": 1,
                 "enemies_count": 2,
                 "loot_count": 5,
                 "trap_count": 4,
@@ -32,10 +31,9 @@
             "enemies": {
                 "sprites": {
                     "walk": "Images/Enemies/Chicken/Run (32x34).png",
-                    "idle": "Images/Enemies/Chicken/Idle (32x34).png",
-                    "hit": "Images/Enemies/Chicken/Hit (32x34).png"
+                    "idle": "Images/Enemies/Chicken/Idle (32x34).png"
                 },
-                "Enemy_pos": [
+                "enemy_pos": [
                     {"x": 1300, "y": 100}, 
                     {"x": 750, "y": 400}
                 ],
@@ -101,7 +99,11 @@
             "scenario": {
                 "stage_name": "NIVEL 2",
                 "background": "Images/Backgrounds/Segundo_nivel.png",
-                "initial_time": 60
+                "initial_time": 90,
+                "enemies_count": 3,
+                "loot_count": 2,
+                "trap_count": 1,
+                "platforms_count": 25
             },
             "player": {
                 "sprites": {
@@ -110,9 +112,9 @@
                     "jump": "Images/Main_Character/FrogNinja/Jump (32x32).png"
                 },
                 "x": 100,
-                "y": 700,
+                "y": 150,
                 "speed": 10,
-                "lives": 150,
+                "lives": 200,
                 "gravity": 20,
                 "jump_power": 20,
                 "frame_rate_ms": 55,
@@ -124,12 +126,12 @@
             "enemies": {
                 "sprites": {
                     "walk": "Images/Enemies/Chicken/Run (32x34).png",
-                    "idle": "Images/Enemies/Chicken/Idle (32x34).png",
-                    "hit": "Images/Enemies/Chicken/Hit (32x34).png"
+                    "idle": "Images/Enemies/Chicken/Idle (32x34).png"
                 },
-                "Enemy_pos": [
-                    {"x": 1300, "y": 100}, 
-                    {"x": 750, "y": 400}
+                "enemy_pos": [
+                    {"x": 750, "y": 150}, 
+                    {"x": 750, "y": 500},
+                    {"x": 750, "y": 700}
                 ],
                 "speed": 6,
                 "gravity": 14,
@@ -143,11 +145,8 @@
             "loots": {
                 "sprite" : "Images/Loots/Cherries.png",
                 "loot_pos": [
-                    {"x": 225, "y": 650}, 
-                    {"x": 375, "y": 550}, 
-                    {"x": 600, "y": 400}, 
-                    {"x": 875, "y": 300}, 
-                    {"x": 1150, "y": 100}
+                    {"x": 600, "y": 150}, 
+                    {"x": 600, "y": 500} 
                 ],
                 "frame_rate_ms": 45,
                 "scale": 1.5
@@ -155,18 +154,51 @@
             "traps": {
                 "sprite": "Images/Traps/Idle.png",
                 "traps_pos": [
-                    {"x": 510, "y": 475}, 
-                    {"x": 710, "y": 475}, 
-                    {"x": 1060, "y": 175}, 
-                    {"x": 1260, "y": 175}
+                    {"x": 310, "y": 375}
                 ]
+            },
+            "platforms": {
+                "platforms_pos":[
+                    {"x": 100, "y": 250},
+                    {"x": 150, "y": 250},
+                    {"x": 200, "y": 250},
+                    {"x": 300, "y": 400},
+                    {"x": 450, "y": 250},
+                    {"x": 500, "y": 250},
+                    {"x": 550, "y": 250},
+                    {"x": 600, "y": 250},
+                    {"x": 650, "y": 250},
+                    {"x": 700, "y": 250},
+                    {"x": 750, "y": 250},
+                    {"x": 300, "y": 700},
+                    {"x": 350, "y": 700},
+                    {"x": 450, "y": 600},
+                    {"x": 500, "y": 600},
+                    {"x": 550, "y": 600},
+                    {"x": 600, "y": 600},
+                    {"x": 650, "y": 600},
+                    {"x": 700, "y": 600},
+                    {"x": 750, "y": 600},
+                    {"x": 850, "y": 500},
+                    {"x": 900, "y": 500},
+                    {"x": 950, "y": 400},
+                    {"x": 1000,"y": 400},
+                    {"x": 850, "y": 300}
+                ],
+                "width": 50,
+                "height": 50,
+                "type": 2
             }
         },
         "stage_3": {
             "scenario": {
                 "stage_name": "NIVEL 3",
                 "background": "Images/Backgrounds/Tercer_nivel.png",
-                "initial_time": 60
+                "initial_time": 60,
+                "enemies_count": 1,
+                "loot_count": 7,
+                "trap_count": 10,
+                "platforms_count": 20
             },
             "player": {
                 "sprites": {
@@ -174,10 +206,10 @@
                     "walk": "Images/Main_Character/FrogNinja/Run.png",
                     "jump": "Images/Main_Character/FrogNinja/Jump (32x32).png"
                 },
-                "x": 100,
-                "y": 700,
+                "x": 1300,
+                "y": 150,
                 "speed": 10,
-                "lives": 150,
+                "lives": 200,
                 "gravity": 20,
                 "jump_power": 20,
                 "frame_rate_ms": 55,
@@ -189,12 +221,10 @@
             "enemies": {
                 "sprites": {
                     "walk": "Images/Enemies/Chicken/Run (32x34).png",
-                    "idle": "Images/Enemies/Chicken/Idle (32x34).png",
-                    "hit": "Images/Enemies/Chicken/Hit (32x34).png"
+                    "idle": "Images/Enemies/Chicken/Idle (32x34).png"
                 },
-                "Enemy_pos": [
-                    {"x": 1300, "y": 100}, 
-                    {"x": 750, "y": 400}
+                "enemy_pos": [
+                    {"x": 750, "y": 150}
                 ],
                 "speed": 6,
                 "gravity": 14,
@@ -208,11 +238,13 @@
             "loots": {
                 "sprite" : "Images/Loots/Cherries.png",
                 "loot_pos": [
-                    {"x": 225, "y": 650}, 
-                    {"x": 375, "y": 550}, 
-                    {"x": 600, "y": 400}, 
-                    {"x": 875, "y": 300}, 
-                    {"x": 1150, "y": 100}
+                    {"x": 1125, "y": 200}, 
+                    {"x": 1325, "y": 350},
+                    {"x": 1125, "y": 500}, 
+                    {"x": 625, "y": 500},
+                    {"x": 925, "y": 350}, 
+                    {"x": 600, "y": 200},
+                    {"x": 950, "y": 600}
                 ],
                 "frame_rate_ms": 45,
                 "scale": 1.5
@@ -220,11 +252,44 @@
             "traps": {
                 "sprite": "Images/Traps/Idle.png",
                 "traps_pos": [
-                    {"x": 510, "y": 475}, 
-                    {"x": 710, "y": 475}, 
-                    {"x": 1060, "y": 175}, 
-                    {"x": 1260, "y": 175}
+                    {"x": 1160, "y": 325},
+                    {"x": 1110, "y": 325},
+                    {"x": 1160, "y": 625},
+                    {"x": 1110, "y": 625},
+                    {"x": 910, "y": 475},
+                    {"x": 960, "y": 475},
+                    {"x": 510, "y": 375},
+                    {"x": 690, "y": 375},
+                    {"x": 610, "y": 625},
+                    {"x": 660,"y": 625}
                 ]
+            },
+            "platforms": {
+                "platforms_pos":[
+                    {"x": 1300, "y": 250},
+                    {"x": 1250, "y": 250},
+                    {"x": 1150, "y": 350},
+                    {"x": 1100, "y": 350},
+                    {"x": 1350, "y": 500},
+                    {"x": 1300, "y": 500},
+                    {"x": 1150, "y": 650},
+                    {"x": 1100, "y": 650},
+                    {"x": 950, "y": 500},
+                    {"x": 900, "y": 500},
+                    {"x": 950, "y": 700},
+                    {"x": 600, "y": 650},
+                    {"x": 650, "y": 650},
+                    {"x": 450, "y": 400},
+                    {"x": 500, "y": 400},
+                    {"x": 550, "y": 400},
+                    {"x": 600, "y": 400},
+                    {"x": 650, "y": 400},
+                    {"x": 700, "y": 400},
+                    {"x": 750, "y": 400}   
+                ],
+                "width": 50,
+                "height": 50,
+                "type": 2
             }
         }
     }
