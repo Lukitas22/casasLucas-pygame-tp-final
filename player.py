@@ -16,6 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.bullet_group = pygame.sprite.Group()
         self.bullet_cooldown = 600
         self.bullet_time = 0
+        self.sound_shoot = pygame.mixer.Sound(PATH_SOUND_SHOOT)
         self.ready = True
         self.lives = self.player_config.get("lives")
         self.score = 0
@@ -110,6 +111,7 @@ class Player(pygame.sprite.Sprite):
 
     def shoot(self):
         self.bullet_group.add(Bullet(self.rect.center, -8, self.direction))
+        self.sound_shoot.play().set_volume(0.2)
 
     
     def recharge(self):

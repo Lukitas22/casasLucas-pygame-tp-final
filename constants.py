@@ -3,6 +3,7 @@ HEIGHT_WINDOW = 900
 FPS = 60
 
 PATH_IMAGE = "Images"
+PATH_SOUND_SHOOT = "Musica\snd_se_MarioD_00000029.wav"
 
 DIRECTION_L = 0
 DIRECTION_R = 1
