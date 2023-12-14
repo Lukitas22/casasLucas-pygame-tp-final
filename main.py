@@ -23,7 +23,7 @@ background = pygame.image.load(PATH_IMAGE + "\Backgrounds\Primer_nivel.png")
 background = pygame.transform.scale(background, (WIDTH_WINDOW, HEIGHT_WINDOW))
 borders_limits = Control()
 
-traps_list = []
+traps_group= pygame.sprite.Group()
 
 decoration_group = pygame.sprite.Group()
 
@@ -81,8 +81,16 @@ list_platforms.append(Platform(x = 1200, y = 200, width = 50, height = 50, type 
 list_platforms.append(Platform(x = 1250, y = 200, width = 50, height = 50, type = 2))
 list_platforms.append(Platform(x = 1300, y = 200, width = 50, height = 50, type = 2))
 
-traps_list.append(Trap(x = 510, y = 475))
 
+trap_1 = Trap(x = 510, y = 475)
+trap_2 = Trap(x = 710, y = 475)
+trap_3 = Trap(x = 1060, y = 175)
+trap_4 = Trap(x = 1260, y = 175)
+
+traps_group.add(trap_1)
+traps_group.add(trap_2)
+traps_group.add(trap_3)
+traps_group.add(trap_4)
 
 
 while True:
@@ -125,12 +133,12 @@ while True:
     for platform in list_platforms:
         platform.draw(screen)
 
-    for trap in traps_list:
+    for trap in traps_group:
         trap.draw(screen)
 
     borders_limits.draw(screen)
     main_player.events(delta_ms, keys)
-    main_player.update(delta_ms, list_platforms, borders_limits, keys, enemy_element)
+    main_player.update(delta_ms, list_platforms, borders_limits, keys, enemy_element, trap)
     main_player.bullet_group.draw(screen)
     main_player.draw(screen)
 

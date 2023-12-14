@@ -93,8 +93,8 @@ class Player(pygame.sprite.Sprite):
             self.frame = 0  
 
 
-    def dead(self, enemy):
-        if self.rect.colliderect(enemy.rect_left_collition) or self.rect.colliderect(enemy.rect_right_collition):
+    def dead(self, enemy, trap):
+        if self.rect.colliderect(enemy.rect_left_collition) or self.rect.colliderect(enemy.rect_right_collition) or self.rect.colliderect(trap.rect):
             self.lives -= 1
             if self.lives == 0:
                 print("Mori")
@@ -186,8 +186,8 @@ class Player(pygame.sprite.Sprite):
                 self.frame = 0
 
 
-    def update(self, delta_ms, list_platforms, borders, keys, enemy_group):
-        self.dead(enemy_group)
+    def update(self, delta_ms, list_platforms, borders, keys, enemy_group, trap):
+        self.dead(enemy_group, trap)
         self.recharge()
         self.bullet_group.update(enemy_group, borders)
         self.collition_borders(borders, keys)
