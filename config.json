@@ -4,6 +4,7 @@
             "scenario": {
                 "stage_name": "NIVEL 1",
                 "background": "Images/Backgrounds/Primer_nivel.png",
+                "music": "Musica/se_stage_75m_01.wav",
                 "initial_time": 60,
                 "enemies_count": 2,
                 "loot_count": 5,
@@ -99,6 +100,7 @@
             "scenario": {
                 "stage_name": "NIVEL 2",
                 "background": "Images/Backgrounds/Segundo_nivel.png",
+                "music": "Musica/l1a1_00018.wav",
                 "initial_time": 90,
                 "enemies_count": 3,
                 "loot_count": 2,
@@ -194,6 +196,7 @@
             "scenario": {
                 "stage_name": "NIVEL 3",
                 "background": "Images/Backgrounds/Tercer_nivel.png",
+                "music": "Musica/se_stage_75m_01.wav",
                 "initial_time": 60,
                 "enemies_count": 1,
                 "loot_count": 7,

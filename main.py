@@ -11,20 +11,23 @@ from control import Control
 from traps import Trap
 
 
-
 data = open("config.json")
 json_config = json.load(data)
 
-stage = json_config.get("stages").get("stage_2")
+stage = json_config.get("stages").get("stage_1")
 
 screen = pygame.display.set_mode((WIDTH_WINDOW, HEIGHT_WINDOW))
 pygame.display.set_caption("Pixel Adventure")
+
 
 pygame.init()
 
 clock = pygame.time.Clock()
 timer = int(pygame.time.get_ticks() + stage.get("scenario").get("initial_time") * 1000)
 
+music = pygame.mixer.music.load(stage.get("scenario").get("music"))
+music = pygame.mixer.music.play(-1)
+music = pygame.mixer.music.set_volume(0.1)
 background = pygame.image.load(stage.get("scenario").get("background"))
 background = pygame.transform.scale(background, (WIDTH_WINDOW, HEIGHT_WINDOW))
 borders_limits = Control()
