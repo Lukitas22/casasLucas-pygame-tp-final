@@ -11,12 +11,14 @@ class Bullet(pygame.sprite.Sprite):
         self.speed = speed
 
 
-    def destroy(self, enemy, borders_limits):
+    def destroy(self, enemy_group, borders_limits):
         if self.rect.x >= WIDTH_WINDOW or self.rect.x <= 0 or self.rect.colliderect(borders_limits.rect_right_border) or self.rect.colliderect(borders_limits.rect_left_border):
             self.kill()
-        if self.rect.colliderect(enemy.rect):
-            self.kill()
-            enemy.kill()
+        
+        for enemy in enemy_group:
+            if self.rect.colliderect(enemy.rect):
+                self.kill()
+                enemy.kill()
 
             
 

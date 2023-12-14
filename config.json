@@ -209,7 +209,7 @@
                 "x": 1300,
                 "y": 150,
                 "speed": 10,
-                "lives": 200,
+                "lives": 250,
                 "gravity": 20,
                 "jump_power": 20,
                 "frame_rate_ms": 55,

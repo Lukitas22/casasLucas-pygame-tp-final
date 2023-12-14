@@ -15,7 +15,7 @@ from traps import Trap
 data = open("config.json")
 json_config = json.load(data)
 
-stage = json_config.get("stages").get("stage_3")
+stage = json_config.get("stages").get("stage_2")
 
 screen = pygame.display.set_mode((WIDTH_WINDOW, HEIGHT_WINDOW))
 pygame.display.set_caption("Pixel Adventure")
@@ -113,7 +113,7 @@ while True:
 
     borders_limits.draw(screen)
     main_player.events(delta_ms, keys)
-    main_player.update(delta_ms, platform_group, borders_limits, keys, enemy_element, trap)
+    main_player.update(delta_ms, platform_group, borders_limits, keys, enemy_group, traps_group)
     main_player.bullet_group.draw(screen)
     main_player.draw(screen)
 
